@@ -4,8 +4,9 @@ import { AuthDTO } from "./dto"; //import a 'folder"
 @Controller('auth')
 export class AuthController {
     // Khi AuthController được tạo ra thì AuthService cũng được tạo ra
-    constructor(private authService: AuthService) {
-    }
+    constructor(
+        private authService: AuthService
+    ) { }
 
     // các request từ client
     @Post("register") // register a new user
@@ -14,7 +15,7 @@ export class AuthController {
     }
 
     @Post("login")
-    login() {
-        return this.authService.login();
+    login(@Body() body: AuthDTO) {
+        return this.authService.login(body);
     }
 }
