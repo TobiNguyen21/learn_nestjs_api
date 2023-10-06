@@ -61,7 +61,7 @@ export class AuthService {
             email
         }
         const jwtString = await this.jwtService.signAsync(payload, {
-            expiresIn: '10m',
+            expiresIn: this.configService.get('EXPIRE_TOKEN'),
             secret: this.configService.get('JWT_SECRET')
         })
         return {
