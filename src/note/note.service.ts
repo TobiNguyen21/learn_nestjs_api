@@ -13,8 +13,11 @@ export class NoteService {
         })
     }
     async getNoteById(noteId: number) {
-
-
+        return await this.prismaService.note.findFirst({
+            where: {
+                id: noteId
+            }
+        })
     }
     async insertNote(userId: number, insertNoteDTO: InsertNoteDTO) {
         return await this.prismaService.note.create({
@@ -55,5 +58,4 @@ export class NoteService {
             }
         });
     }
-
 }

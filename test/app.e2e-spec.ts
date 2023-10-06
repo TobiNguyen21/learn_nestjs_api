@@ -129,7 +129,8 @@ describe('App EndToEnd tests', () => {
             .get('/user/me')
             .withBearerToken('$S{accessToken}')
             .expectStatus(200)
-            .inspect()
+            .stores('userId', 'id')
+          //.inspect()
         })
       })
     })
@@ -137,8 +138,42 @@ describe('App EndToEnd tests', () => {
     // TEST NOTE
     describe('Note', () => {
       describe('Insert Note', () => {
+        it('insert first note', () => {
+          return pactum.spec()
+            .post('/note')
+            .withBearerToken('$S{accessToken}')
+            .withBody({
+              title: 'This is test 1',
+              description: 'des test 01',
+              url: 'test01.com'
+            })
+            .expectStatus(201)
+            .stores('nodeId01', 'id')
+            .inspect()
+        })
+        it('insert second note', () => {
+          return pactum.spec()
+            .post('/note')
+            .withBearerToken('$S{accessToken}')
+            .withBody({
+              title: 'This is test 2',
+              description: 'des test 02',
+              url: 'test01.com'
+            })
+            .expectStatus(201)
+            .stores('nodeId02', 'id')
+            .inspect()
+        })
       })
       describe('Get all Note', () => {
+        it('Get all note', () => {
+          return pactum.spec()
+            .get('/note')
+            .withBearerToken('$S{accessToken}')
+            .expectStatus(200)
+            .inspect()
+        })
+
       })
       describe('Get one Note by ID', () => {
       })

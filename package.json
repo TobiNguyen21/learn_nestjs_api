@@ -6,6 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "db:test:display": "npx dotenv -e .env.test -- prisma studio",
+    "db:dev:display": "npx dotenv -e .env -- prisma studio",
     "prisma:dev:deploy": "prisma migrate deploy",
     "db:dev:remove": "docker compose rm dev-database --stop --force --volumes",
     "db:dev:create": "docker compose up dev-database --detach",
